@@ -1,0 +1,11 @@
+VALIDACIÓN v3.9.2 — ESTABILIDAD, ORCOS Y ARMAS DE CASTILLO
+
+- Se corrigieron constantes faltantes de defensa de castillo que provocaban excepciones de actualización.
+- Se eliminó el aviso visual “El juego recuperó una animación”; las recuperaciones quedan silenciosas y registradas.
+- El watchdog reubica unidades realmente inmóviles tras 4.2 s, sin interrumpir ataques válidos.
+- Los botones Flecha/Cañón/Hielo/Rayo controlan también el arma de ambos castillos.
+- Los castillos atacan hasta tres objetivos simultáneamente.
+- Flecha, cañón, hielo y rayo conservan comportamiento diferenciado (daño/área/ralentización/alcance).
+- Se redujo nuevamente la escala visual de los castillos.
+- Se endureció la gestión de proyectiles/efectos para evitar errores por referencias inválidas.
+- Sintaxis JavaScript validada con node --check.

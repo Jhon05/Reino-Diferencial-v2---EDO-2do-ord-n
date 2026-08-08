@@ -1,0 +1,9 @@
+REINO DIFERENCIAL v3.9 — VALIDACIÓN DE PISTAS Y RETROALIMENTACIÓN MATEMÁTICA
+
+- Todas las familias de preguntas del banco principal y del banco adicional contienen prompt, pista, retroalimentación y solución no vacíos.
+- Se probaron 1.160 instancias parametrizadas generadas dinámicamente sin campos faltantes.
+- Las pistas se muestran en un panel matemático y reciben un recordatorio teórico específico del tema.
+- La retroalimentación se divide en estado de respuesta, retroalimentación conceptual y solución guiada.
+- MathJax local mantiene salida SVG mediante tex-svg-full.js para ecuaciones nítidas y escalables.
+- El informe final conserva la pista, la retroalimentación y la solución de cada pregunta.
+- Se mantuvo la lógica SCORM 1.2/Brightspace y el sistema de calificación existente.

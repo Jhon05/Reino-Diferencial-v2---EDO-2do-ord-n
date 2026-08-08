@@ -1,0 +1,33 @@
+REINO DIFERENCIAL v3.3 — AUDITORÍA TÉCNICA
+
+RESULTADO GENERAL: OK
+
+1. JavaScript
+- game.js: sintaxis válida.
+- calculator.js: sintaxis válida.
+- questions.js: sintaxis válida.
+- questions_extra.js: sintaxis válida.
+
+2. Navegación enemiga
+- Dos rutas cerradas e independientes.
+- Paso obligatorio por rotonda validado mediante checkpoints ordenados.
+- Anclaje continuo al centro de la polilínea.
+- Orientación horizontal recalculada según la tangente del segmento.
+- Histéresis en tramos verticales para evitar inversión visual intermitente.
+
+3. Matemáticas
+- MathJax SVG local.
+- Enunciados, opciones, pistas, retroalimentaciones y soluciones incluidos en cada llamada de typeset.
+- Limpieza de renderizaciones previas con typesetClear.
+- Espera explícita de MathJax.startup.promise.
+- Banco parametrizado probado en 28 tarjetas y 343 SVG.
+
+4. Informe
+- El informe se genera después de convertir las fórmulas a SVG.
+- La caché local mantiene el informe descargado autónomo.
+
+5. SCORM
+- imsmanifest.xml en la raíz.
+- Recurso SCO con href index.html.
+- Puntaje reportado sobre 5.00.
+- Estado passed/failed/incomplete gestionado por scorm.js.

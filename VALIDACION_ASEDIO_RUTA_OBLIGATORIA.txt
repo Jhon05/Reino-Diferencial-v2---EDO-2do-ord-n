@@ -1,0 +1,8 @@
+VALIDACIÓN DE ASEDIO — RUTA OBLIGATORIA
+
+1. Ningún enemigo puede seleccionar un castillo como objetivo durante nearestTargetForEnemy().
+2. El castillo solo se habilita como objetivo cuando progress >= 1 y roundaboutPassed = true.
+3. Catapultas: recorren toda la ruta y, al llegar al final del camino, permanecen en la posición de tiro de la vía; alcance contra castillo = 150 px de diseño.
+4. Arietes: recorren toda la ruta y, tras llegar al final, avanzan hasta contacto cercano; alcance contra castillo = 16 px de diseño.
+5. Si un castillo fue destruido, el sistema de transferencia obliga a regresar por la ruta al portal y recorrer la ruta del castillo superviviente.
+6. Se mantiene el ataque a torres intermedias y el retorno al mismo punto del camino después de destruirlas.

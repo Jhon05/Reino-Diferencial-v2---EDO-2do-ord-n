@@ -1,0 +1,30 @@
+VALIDACIÓN LATEX DE PREGUNTAS — REINO DIFERENCIAL V4
+Fecha: 2026-08-07
+
+Alcance:
+- questions.js
+- questions_extra.js
+- Enunciados
+- Opciones
+- Pistas
+- Retroalimentación conceptual
+- Soluciones guiadas
+
+Corrección principal:
+- Se corrigieron dos ocurrencias de \\neq que estaban almacenadas con una sola barra invertida en el código fuente JavaScript. En ejecución, \\n se interpretaba como salto de línea y MathJax recibía "eq0". Ahora se usa correctamente \\neq 0.
+
+Protección adicional:
+- Se añadió saneamiento preventivo de escapes de control antes de renderizar cada pregunta.
+- Se reforzó el CSS para evitar recorte vertical u horizontal de SVG de MathJax en preguntas, opciones, pistas y retroalimentación.
+
+Auditoría automática:
+- 1740 instancias parametrizadas generadas.
+- 0 caracteres de control problemáticos.
+- 0 delimitadores inline/display desbalanceados.
+- 0 respuestas con índice inválido.
+- 0 opciones duplicadas dentro de una pregunta.
+- 0 apariciones de "eq0" desnudo.
+- Comandos TeX del banco principal verificados con escape doble en JavaScript: cos, sin, frac, int, ln, mapsto, neq, omega, pm, quad, sqrt.
+- Comandos TeX del banco adicional verificados: cos, int, lambda, ln, neq, omega, sin, sqrt.
+
+Resultado: APROBADO.

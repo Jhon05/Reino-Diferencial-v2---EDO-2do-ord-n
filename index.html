@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07111e">
+<title>Reino Diferencial v3.9 · Tower Defense Matemático</title>
+<link rel="stylesheet" href="styles.css">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},startup:{typeset:false}};</script>
+<script defer src="mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<section id="setupScreen" class="screen active setup-screen">
+  <div class="setup-card">
+    <div class="setup-copy">
+      <span class="eyebrow">Ecuaciones diferenciales de segundo orden</span>
+      <h1>Reino Diferencial <b>v3.9</b></h1>
+      <p>Defiende dos castillos. Los orcos aparecen únicamente en dos portales y recorren un solo camino obligatorio hacia cada castillo, pasando por la rotonda guardiana.</p>
+      <div class="setup-badges"><span>SCORM 1.2</span><span>Brightspace</span><span>Calculadora ECOMAT</span><span>Informe automático</span></div>
+    </div>
+    <div class="setup-form">
+      <label>Nombre completo<input id="studentName" autocomplete="name" placeholder="Escribe tu nombre"></label>
+      <div class="two-cols">
+        <label>Modo<select id="gameMode"><option value="evaluation">Evaluación</option><option value="training">Entrenamiento</option></select></label>
+        <label>Dificultad<select id="difficulty"><option value="support">Apoyo</option><option value="standard" selected>Estándar</option><option value="challenge">Reto</option></select></label>
+      </div>
+      <button id="chooseThemes" class="secondary full">Elegir los 2 temas de los castillos</button>
+      <div id="themeSummary" class="theme-summary">Selecciona exactamente dos temas.</div>
+      <label class="consent"><input id="acceptRules" type="checkbox"> <span>Acepto las reglas de integridad y el uso obligatorio de pantalla completa.</span></label>
+      <button id="startGame" class="primary full big">Iniciar defensa</button>
+      <div id="setupStatus" class="status-line" role="status"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gameScreen" class="screen game-screen">
+  <header class="hud">
+    <div class="brand-mini"><b>Reino Diferencial</b><small>Tower Defense matemático</small></div>
+    <div class="hud-chip grade"><small>Nota</small><strong id="hudGrade">0.00</strong></div>
+    <div class="hud-chip"><small>Ola</small><strong id="hudWave">1/5</strong></div>
+    <div class="hud-chip"><small>Restantes</small><strong id="hudRemaining">0</strong></div>
+    <div class="hud-chip castle blue"><small id="hudCastleAName">Castillo A</small><strong id="hudCastleA">100%</strong></div>
+    <div class="hud-chip castle green"><small id="hudCastleBName">Castillo B</small><strong id="hudCastleB">100%</strong></div>
+    <div class="hud-chip integrity"><small>Integridad</small><strong id="hudIntegrity">0/5</strong></div>
+    <nav class="tower-dock hud-tower-dock" aria-label="Tipos de torre y estado de campaña">
+      <button class="tower-pick active" data-kind="arrow"><span>🏹</span><b>Flecha</b><small>Rápida</small></button>
+      <button class="tower-pick" data-kind="cannon"><span>💥</span><b>Cañón</b><small>Área</small></button>
+      <button class="tower-pick" data-kind="ice"><span>❄️</span><b>Hielo</b><small>Ralentiza</small></button>
+      <button class="tower-pick" data-kind="ray"><span>⚡</span><b>Rayo</b><small>Alcance</small></button>
+      <button id="openStats" class="tower-pick utility"><span>📊</span><b>Estado</b><small>Campaña</small></button>
+    </nav>
+    <div class="hud-spacer"></div>
+    <div class="hud-actions">
+      <button id="pauseBtn" class="icon-btn" title="Pausar">⏸</button>
+      <button id="fullscreenBtn" class="icon-btn" title="Pantalla completa">⛶</button>
+      <button id="finishBtn" class="icon-btn danger" title="Finalizar">⚑</button>
+    </div>
+  </header>
+  <div class="game-layout">
+    <main class="canvas-shell">
+      <canvas id="gameCanvas" width="1448" height="1086" aria-label="Mapa del Reino Diferencial"></canvas>
+      <div id="mapHint" class="map-hint">Pulsa una plataforma libre para construir; al hacerlo podrás elegir el tipo de torre. Pulsa una torre construida para reforzarla o evolucionarla.</div>
+      <div id="waveBanner" class="wave-banner hidden"></div>
+    </main>
+  </div>
+</section>
+
+<div id="themeModal" class="overlay hidden">
+  <div class="modal-card theme-modal-card">
+    <div class="modal-head"><div><span class="eyebrow">Configuración</span><h2>Selecciona exactamente dos temas</h2></div><button data-close="themeModal" class="close-btn">×</button></div>
+    <div id="themeGrid" class="theme-grid"></div>
+    <div class="modal-actions"><button id="clearThemes">Limpiar</button><button id="saveThemes" class="primary">Guardar selección</button></div>
+  </div>
+</div>
+
+<div id="buildModal" class="overlay hidden">
+  <div class="modal-card build-card">
+    <div class="modal-head"><div><span class="eyebrow">Construcción estratégica</span><h2>Elige el tipo de torre a construir</h2></div><button id="closeBuildSelector" class="close-btn">×</button></div>
+    <div class="build-copy">Cada torre secundaria tiene tres estados evolutivos. Responde correctamente para construirla y luego mejorarla con preguntas más difíciles.</div>
+    <div id="buildChoiceGrid" class="build-choice-grid"></div>
+  </div>
+</div>
+
+<div id="questionModal" class="overlay hidden">
+  <div class="question-card">
+    <div class="question-head">
+      <div><span id="questionTheme" class="question-tag"></span><h2 id="questionTitle">Pregunta</h2></div>
+      <div class="question-tools"><span id="questionDifficulty" class="difficulty-tag"></span><button id="openCalculator" class="calc-open">🧮 Calculadora</button></div>
+    </div>
+    <div class="question-body">
+      <div id="questionAction" class="action-callout"></div>
+      <div id="questionText" class="question-text"></div>
+      <div id="questionOptions" class="question-options"></div>
+      <div id="questionHint" class="hint-box hidden"></div>
+      <div id="questionFeedback" class="feedback-box hidden"></div>
+      <div class="question-actions"><button id="hintBtn">Ver pista</button><button id="continueBtn" class="primary hidden">Continuar</button></div>
+    </div>
+  </div>
+</div>
+
+<section id="calculatorPanel" class="calculator-panel hidden" aria-label="Calculadora ECOMAT Math Input" role="dialog" aria-modal="true">
+  <div class="calc-head"><div><b>Calculadora ECOMAT Math Input</b><small>Plantillas matemáticas · resultado exacto y decimal</small></div><div class="calc-head-actions"><button id="calcAngleMode">Radianes</button><button id="closeCalculator">Cerrar</button></div></div>
+  <div class="calc-body">
+    <div class="calc-entry-shell">
+      <div class="calc-query-row"><div id="calcMathField" class="calc-math-field" contenteditable="true" spellcheck="false" data-placeholder="Escribe una expresión o inserta una plantilla"></div><button id="calcClearField" title="Borrar">×</button><button id="calcEvaluate" class="equals">=</button></div>
+      <div class="calc-help">Tab avanza por las casillas; ↑ y ↓ navegan en fracciones.</div>
+      <div class="calc-templates">
+        <button data-structure="fraction"><span class="mini-frac"><i>□</i><i>□</i></span></button><button data-structure="power">□<sup>□</sup></button><button data-structure="sqrt">√□</button><button data-structure="nthroot"><sup>□</sup>√□</button><button data-structure="abs">|□|</button><button data-structure="paren">(□)</button><button data-structure="sin">sen(□)</button><button data-structure="cos">cos(□)</button><button data-structure="tan">tan(□)</button><button data-structure="ln">ln(□)</button><button data-structure="log">log(□)</button>
+      </div>
+    </div>
+    <div class="calc-result-tabs"><button id="calcExactMode" class="active">Resultado exacto</button><button id="calcDecimalMode">Decimales</button><span id="calcStatus"></span></div>
+    <div class="calc-results"><div id="calcExactCard" class="calc-result-card active"><small>FORMA EXACTA</small><div id="calcExactOutput">\(—\)</div></div><div id="calcDecimalCard" class="calc-result-card"><small>APROXIMACIÓN DECIMAL</small><div id="calcDecimalOutput">\(—\)</div></div></div>
+    <div class="calc-keypad"><div class="calc-scientific"><button data-structure="sin">sen</button><button data-structure="cos">cos</button><button data-structure="tan">tan</button><button data-structure="ln">ln</button><button data-structure="log">log</button><button data-calc="π">π</button><button data-calc="e">e</button><button data-structure="sqrt">√</button><button data-structure="power" data-power="2">x²</button><button data-structure="power">xʸ</button><button data-calc="(">(</button><button data-calc=")">)</button><button data-structure="abs">|x|</button><button data-calc="back">DEL</button><button data-calc="clear">AC</button></div><div class="calc-numeric"><button data-calc="7">7</button><button data-calc="8">8</button><button data-calc="9">9</button><button data-calc="/">÷</button><button data-calc="4">4</button><button data-calc="5">5</button><button data-calc="6">6</button><button data-calc="*">×</button><button data-calc="1">1</button><button data-calc="2">2</button><button data-calc="3">3</button><button data-calc="-">−</button><button data-calc="0">0</button><button data-calc=".">.</button><button data-calc="+">+</button><button data-calc="equals" class="equals">=</button></div></div>
+    <div class="calc-bottom"><button id="calcToAnswer">Usar resultado como respuesta</button><span>La forma exacta conserva fracciones, raíces y valores trascendentes.</span></div>
+  </div>
+</section>
+<div id="calcBackdrop" class="calc-backdrop hidden"></div>
+
+<div id="securityModal" class="overlay hidden">
+  <div class="modal-card security-card"><span class="security-icon">⚠</span><h2>Incidencia de integridad</h2><p id="securityMessage"></p><div class="security-count" id="securityCount">1/5</div><label>Contraseña docente<input id="teacherPassword" type="password" maxlength="12" autocomplete="off" placeholder="****" aria-label="Contraseña docente"></label><div id="securityStatus" class="status-line"></div><button id="unlockBtn" class="primary full">Validar y volver a pantalla completa</button></div>
+</div>
+
+<div id="statsModal" class="overlay hidden"><div class="modal-card stats-card"><div class="modal-head"><h2>Estado de campaña</h2><button data-close="statsModal" class="close-btn">×</button></div><div id="statsContent"></div></div></div>
+
+<div id="reportModal" class="overlay hidden"><div class="report-modal-card"><div class="report-head"><div><b>Reino Diferencial v3.9</b><span>Informe final pedagógico y estratégico</span></div><div><button id="downloadReport" class="primary">Descargar informe HTML</button><button id="newGame">Nueva partida</button></div></div><div id="reportViewport" class="report-viewport"></div></div></div>
+
+<script src="scorm.js"></script>
+<script src="questions.js"></script>
+<script src="questions_extra.js"></script>
+<script src="calculator.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

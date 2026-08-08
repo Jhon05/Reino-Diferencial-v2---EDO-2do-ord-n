@@ -1,0 +1,10 @@
+REINO DIFERENCIAL v3.9 — VALIDACIÓN DE CASTILLOS Y TRASLADO
+
+1. Se eliminó visualmente la superposición de los castillos fijos del mapa base.
+2. Los castillos dinámicos azul y verde se dibujan centrados sobre una única base.
+3. Los estados de daño e incendio cambian según la vida restante.
+4. Cuando un castillo cae, los enemigos de esa ruta regresan siguiendo el camino inverso hasta su portal.
+5. Los portales enlazan ambas rutas: el enemigo reaparece en el portal contrario y recorre la ruta completa hacia el castillo sobreviviente.
+6. Los enemigos nuevos se redirigen automáticamente a la ruta del castillo que siga en pie.
+7. Se conserva la rotonda obligatoria en la nueva ruta después del traslado.
+8. El archivo game.js supera la validación sintáctica de Node.js.

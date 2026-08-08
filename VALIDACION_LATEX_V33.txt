@@ -1,0 +1,29 @@
+REINO DIFERENCIAL v3.3 — VALIDACIÓN DE LATEX VISIBLE
+
+RESULTADO GENERAL: OK
+
+Motor
+- MathJax SVG local: mathjax/tex-svg-full.js.
+- No depende de internet.
+- Caché de fuentes configurada como local para que el informe HTML conserve símbolos y glifos dentro de cada SVG.
+- Procesamiento habilitado para matemáticas en línea, matemáticas destacadas, escapes y entornos TeX.
+
+Cobertura verificada
+- 7 temas.
+- Niveles básico y avanzado.
+- 28 tarjetas de prueba generadas desde el banco parametrizado.
+- 343 expresiones convertidas a SVG.
+- 0 delimitadores TeX sin procesar.
+- 0 fragmentos matemáticos detectados fuera de delimitadores en enunciados, opciones, pistas, retroalimentaciones y soluciones.
+
+Contenedores incluidos en la renderización
+- Enunciado.
+- Opciones de respuesta.
+- Pista.
+- Retroalimentación.
+- Solución guiada.
+- Formulario teórico e informe final.
+- Resultados exactos y decimales de la calculadora.
+
+Evidencia visual
+- assets/validacion_latex_v33.png

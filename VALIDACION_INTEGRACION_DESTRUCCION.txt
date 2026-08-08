@@ -1,0 +1,14 @@
+REINO DIFERENCIAL v3.9 — VALIDACIÓN DE INTEGRACIÓN VISUAL
+
+Corrección aplicada:
+- Se inicializa correctamente el arreglo state.ruins usado por las nuevas animaciones.
+- Se añadieron protecciones para que una incidencia de actualización no impida dibujar el mapa.
+- Se mantienen los estados de daño de torres de flecha, cañón, hielo y rayo.
+- Se mantienen los estados progresivos de daño de los castillos azul y verde.
+- Las ruinas de torres permanecen visibles temporalmente y desaparecen de forma gradual.
+- Se conservan la lógica original, SCORM 1.2, Brightspace, preguntas e informe.
+
+Validaciones técnicas:
+- game.js supera comprobación sintáctica de Node.js.
+- El paquete conserva index.html e imsmanifest.xml en la raíz.
+- Los recursos gráficos nuevos están incluidos en assets/.

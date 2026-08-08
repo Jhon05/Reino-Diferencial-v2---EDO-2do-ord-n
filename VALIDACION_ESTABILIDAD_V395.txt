@@ -1,0 +1,29 @@
+VALIDACIÓN REINO DIFERENCIAL v3.9.5
+
+Corrección del congelamiento
+- Se identificó la excepción que detenía updateEnemies(): llamada a reviveSuperiorBoss() sin definición al morir enemigos.
+- Se definió la lógica de segunda vida y se restringió su uso únicamente al jefe superior.
+- Prueba de estrés por ciclos de actualización: enemigos ordinarios mueren sin detener el bucle.
+
+Jefes
+- Jefe de oleada: permanece sobre la ruta (desviación medida en prueba: 0 px).
+- Jefe superior: permanece sobre la ruta (desviación medida en prueba: 0 px).
+- Al detectar una torre cercana, el jefe ataca desde el punto actual del camino y continúa desde ese mismo progreso al destruirla.
+- No entra en retorno fuera de camino después de atacar una torre.
+
+Jefe superior
+- Dos barras de vida completas mediante una segunda vida real.
+- Primera barra agotada: recupera HP completo sin cambiar su progreso en la ruta.
+- Segunda barra agotada: derrota definitiva.
+- Velocidad base superior a la de los orcos normales.
+
+Rendimiento
+- Separación de enemigos reemplazada por espaciado longitudinal sobre la ruta, evitando empujes laterales y reduciendo el costo O(n^2).
+- Imágenes de jefes optimizadas de resolución para reducir memoria y carga de renderizado.
+
+Pruebas automáticas
+- Muerte de enemigo ordinario: OK.
+- Recorrido del jefe sobre la ruta: OK.
+- Ataque de jefe a torre cercana sin salirse del camino y continuación posterior: OK.
+- Primera y segunda barra del jefe superior: OK.
+- Sintaxis JavaScript de todos los archivos del proyecto: OK.

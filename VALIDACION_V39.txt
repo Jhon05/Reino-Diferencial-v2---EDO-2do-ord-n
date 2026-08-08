@@ -1,0 +1,46 @@
+VALIDACIÓN REINO DIFERENCIAL v3.9
+
+CAUSA DE LA DESAPARICIÓN / CONGELAMIENTO
+- Las nuevas animaciones de ataque llamaban a gridFrame() y drawGridSprite(), pero esas funciones no estaban presentes en game.js.
+- Cuando el primer enemigo entraba en la fase attackTower, draw() lanzaba una excepción.
+- El canvas ya había dibujado el mapa y las torres, pero no alcanzaba a dibujar los enemigos; por eso parecían desaparecer y el contador permanecía detenido.
+
+CORRECCIONES DE EJECUCIÓN
+- Funciones de atlas de ataque agregadas y comprobadas.
+- Bucle requestAnimationFrame protegido con recuperación de errores.
+- Enemigos con coordenadas no finitas o fuera del tablero se reubican en su ruta.
+- Los cambios de resolución remapean enemigos, proyectiles y efectos.
+- Vigilante de estados inmóviles con retorno automático al camino.
+- Enemigos muertos se eliminan desde walk, hurt, attackTower, attack y returnPath.
+- Los jefes pendientes de una pregunta siguen contando como activos.
+- Una oleada no termina mientras quede cualquier enemigo vivo.
+- Si un castillo ya fue destruido, el atacante se redirige al castillo superviviente.
+
+RENDIMIENTO
+- Resolución interna adaptativa del canvas.
+- Sincronización SCORM limitada y no ejecutada por cuadro.
+- Máximo de 500 proyectiles y 280 efectos activos.
+- Sonidos repetitivos limitados por intervalo.
+- Registro de golpes resumido por umbrales de vida.
+- Línea temporal limitada a 6000 eventos, conservando un contador de eventos resumidos.
+- Atlas generados recortados y optimizados para evitar dibujar áreas transparentes gigantes.
+
+PRUEBAS AUTOMÁTICAS
+- Sintaxis de todos los JavaScript: OK.
+- 7 pruebas de estados críticos: OK.
+- Ataque de orco, ogro, catapulta, ariete y jefe: OK.
+- Eliminación durante ataque: OK.
+- Recuperación de coordenadas inválidas: OK.
+- Jefe gatePending no cierra la oleada: OK.
+- Redirección tras destrucción de castillo: OK.
+- Cambio de resolución: OK.
+- Auditoría de rutas y rotondas: OK.
+- Simulación de diez oleadas: OK.
+- Nota al completar cinco oleadas: 2.50.
+- Nota al completar diez oleadas: 5.00.
+- Bono máximo de bajas por oleada activa: 0.10.
+
+SCORM
+- Referencias del manifiesto: completas.
+- Archivos faltantes: 0.
+- Identificadores HTML duplicados: 0.

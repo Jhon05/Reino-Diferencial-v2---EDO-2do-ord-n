@@ -1,0 +1,34 @@
+VALIDACION BANCO DE PREGUNTAS - 6 OPCIONES Y UNICIDAD MATEMATICA
+Fecha: 2026-08-07
+
+Cambios:
+- Toda pregunta de seleccion multiple ordinaria usa exactamente 6 alternativas (A-F).
+- Preguntas de afirmaciones I-II-III usan exactamente 6 alternativas.
+- Verdadero/Falso conserva sus 2 alternativas naturales.
+- Preguntas numericas conservan entrada numerica y no se fuerzan a opcion multiple.
+- Se agrego normalizacion semantica para soluciones generales con constantes arbitrarias:
+  * C1 exp(r1 x)+C2 exp(r2 x) se considera equivalente al intercambio r1 <-> r2.
+  * C1 x^m1 + C2 x^m2 se considera equivalente al intercambio m1 <-> m2.
+- Si un distractor resulta equivalente a la respuesta correcta, se elimina antes del barajado.
+- Se reforzaron los distractores matematicos de las familias principales.
+
+Auditoria parametrizada:
+- 14,500 preguntas generadas.
+- 12,000 preguntas de seleccion multiple verificadas con 6 opciones.
+- 1,250 preguntas Verdadero/Falso verificadas con 2 opciones.
+- 1,250 preguntas numericas verificadas.
+- 0 opciones exactas duplicadas.
+- 0 duplicados semanticos detectados por las reglas de equivalencia implementadas.
+- 0 indices de respuesta invalidos.
+
+Auditoria LaTeX/MathJax:
+- 696 preguntas muestreadas para render matematico.
+- 8,088 expresiones TeX procesadas con MathJax.
+- 0 errores de render MathJax.
+- Auditoria adicional de 1,740 generaciones: 0 escapes de control rotos, 0 delimitadores desbalanceados.
+
+Caso de regresion revisado:
+  y'' - 16y = 0
+Respuesta unica valida:
+  y = C1 e^(-4x) + C2 e^(4x)
+No se ofrece como distractor la expresion equivalente con C1,C2 intercambiadas.

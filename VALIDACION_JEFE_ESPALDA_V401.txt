@@ -1,0 +1,9 @@
+REINO DIFERENCIAL - VALIDACION JEFE DE ESPALDA
+
+- Se integraron 4 sprites nuevos de carrera de espalda.
+- Se precargan desde assets/boss_custom_back_run_1.png a boss_custom_back_run_4.png.
+- El motor selecciona automáticamente la secuencia trasera cuando el jefe está en pose de movimiento y headingY < -0.16.
+- Ataque mantiene los sprites de ataque existentes.
+- Carrera frontal/lateral mantiene la secuencia personalizada anterior.
+- La misma lógica se aplica al jefe superior, conservando su escala propia.
+- game.js validado con node --check.

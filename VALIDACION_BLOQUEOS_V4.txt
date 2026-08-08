@@ -1,0 +1,16 @@
+VALIDACIÓN DE BLOQUEOS — REINO DIFERENCIAL v4.0
+
+Bloqueos activos durante el intento:
+1. Pantalla completa obligatoria: salir genera incidencia y pausa el juego.
+2. Escape: intento registrado y bloqueado cuando el navegador lo permite.
+3. Cambio de pestaña, minimización o pérdida de foco: genera incidencia.
+4. Clic derecho: bloqueado y registrado.
+5. Captura/atajos restringidos: PrintScreen, F12, Ctrl+Shift+I/J/C/S, Ctrl+U/S/P/C/V/X y combinaciones de captura comunes en macOS.
+6. Copiar, cortar y pegar durante el intento: bloqueados y registrados.
+
+Política en modo evaluación:
+- Incidencia 1: advertencia sin descuento.
+- Incidencias 2, 3 y 4: -0.05 cada una.
+- Incidencia 5: intento anulado (nota 0).
+
+Se corrigió el fallo previo del botón de desbloqueo: la función de validación docente ahora existe y retorna a pantalla completa tras validar el código dinámico.

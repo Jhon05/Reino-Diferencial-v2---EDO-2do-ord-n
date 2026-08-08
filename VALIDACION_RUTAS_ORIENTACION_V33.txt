@@ -1,0 +1,28 @@
+REINO DIFERENCIAL v3.3 — VALIDACIÓN DE RUTAS Y ORIENTACIÓN
+
+RESULTADO GENERAL: OK
+
+Rutas fijas
+- Ruta A: portal morado → entrada de rotonda → recorrido circular obligatorio → salida de rotonda → camino inferior largo → puerta del castillo azul.
+- Ruta B: portal rojo → entrada de rotonda → recorrido circular obligatorio → salida de rotonda → camino inferior largo → puerta del castillo verde.
+- Longitud normalizada de cada ruta: 1.2283136383.
+- Checkpoint de entrada de rotonda: t = 0.3265631586.
+- Checkpoint de salida de rotonda: t = 0.4418653025.
+- No existe búsqueda libre de caminos, cambio de ruta ni destino directo al castillo.
+
+Orientación de sprites
+- El atlas base mira hacia la izquierda.
+- Cuando la tangente del camino tiene dx > 0.035, el sprite se refleja horizontalmente para mirar a la derecha.
+- Cuando dx < -0.035, conserva la orientación izquierda.
+- En tramos casi verticales se conserva la última orientación estable para evitar parpadeos.
+- La orientación se recalcula en cada actualización y también durante el ataque final.
+- Ruta A inicia con flip = -1, que corresponde a avance hacia la derecha.
+- Ruta B inicia con flip = +1, que corresponde a avance hacia la izquierda.
+- Cada ruta presenta seis cambios de dirección cuantizados durante el recorrido.
+
+Plataformas y guardianas
+- 24 plataformas regulares únicas, dentro del mapa y separadas del camino.
+- Dos guardianas ancladas al centro de las rotondas.
+
+Evidencia visual
+- assets/validacion_orientacion_v33.png

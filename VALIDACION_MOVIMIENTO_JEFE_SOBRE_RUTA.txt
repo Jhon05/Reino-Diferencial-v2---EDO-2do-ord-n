@@ -1,0 +1,16 @@
+VALIDACIÓN DE MOVIMIENTO DEL JEFE SOBRE LA RUTA
+
+Correcciones aplicadas:
+1. El jefe no puede cambiar instantáneamente su progreso para alcanzar una torre detrás de él.
+2. Si el objetivo queda delante o detrás, recorre progresivamente la polilínea de la ruta hasta el punto de ataque.
+3. La selección de objetivo del jefe usa distancia recorrible sobre la ruta, no distancia recta a través de agua/rocas.
+4. El jefe permanece anclado a pathPoint(path, progress) en cada actualización.
+5. El sentido visual frontal/espalda usa routeTravelSign; al recorrer la ruta hacia atrás se invierte correctamente.
+6. Los puentes pertenecen a la misma polilínea de ruta, por lo que al cruzar el río el ancla del jefe pasa por el puente y no por el agua.
+7. El castillo sigue siendo objetivo válido y las torres siguen siendo objetivos válidos; se prioriza el más cercano por recorrido de ruta.
+
+Resultado esperado:
+- Sin teletransportes entre tramos.
+- Sin atajos rectos por agua o terreno.
+- Cruce por los puentes.
+- Frente/espalda coherente con el sentido real de desplazamiento.

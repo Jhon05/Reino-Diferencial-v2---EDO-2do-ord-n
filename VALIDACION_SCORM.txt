@@ -1,0 +1,13 @@
+Reino Diferencial v3.9
+VALIDACIÓN SCORM 1.2 Y DISEÑO RESPONSIVE
+
+- imsmanifest.xml ubicado en la raíz del paquete.
+- Recurso SCO principal: index.html.
+- Barra lateral eliminada.
+- Flecha, Cañón, Hielo, Rayo y Estado se integraron en la banda superior.
+- La banda superior se mantiene en una fila en pantallas grandes y se reorganiza dentro del mismo encabezado en tabletas y celulares.
+- El canvas ocupa el 100% del área útil restante.
+- En orientación horizontal, el mapa y todas sus coordenadas se adaptan al ancho y alto disponibles.
+- En orientación vertical extrema, se conserva la proporción para evitar deformación excesiva.
+- Los controles de pausa, pantalla completa y finalizar permanecen visibles.
+- Las preguntas, calculadora, informe, rutas fijas, rotondas, barras de vida y defensa de castillos se conservan.
